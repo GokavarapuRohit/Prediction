@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <marquee behavior="" direction=""> This prediction only based on previous Data still project in testing phase</marquee>
+    <div class="container mt-5">
+        <h1>Prediction Results</h1>
+        {% if results %}
+            <table id="resultsTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Institute</th>
+                        <th>Program Name</th>
+                        <th>Round No</th>
+                        <th>Opening Rank</th>
+                        <th>Closing Rank</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.institute_short }}</td>
+                            <td>{{ result.program_name }}</td>
+                            <td>{{ result.round_no }}</td>
+                            <td>{{ result.opening_rank }}</td>
+                            <td>{{ result.closing_rank }}</td>
+                            <td>{{ result.year }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No matching records found. Try Again.</p>
+        {% endif %}
+        <a href="/" class="btn btn-primary">Try Again</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#resultsTable').DataTable({
+                "order": [] // Optional: Default ordering can be set here
+            });
+        });
+    </script>
+    
+</body>
+</html>
